@@ -17,31 +17,39 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
-          version: "6.7.*"
+          version: "6.11.1"
           host: "windows"
           target: "desktop"
-          arch: "win64_msvc2019_64"
+          arch: "win64_mingw"
+          tools: "tools_mingw1310,qt.tools.win64_mingw1310"
+
+      - name: List available Qt tools
+        if: failure()
+        run: |
+          pip install aqtinstall
+          python -m aqt list-tool windows desktop
+ 
+      - name: Add Qt's MinGW to PATH
+        run: echo "$env:IQTA_TOOLS\mingw1310_64\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
 
       - name: Install Ninja
-        run: choco install ninja -y --no-progress
-
-      - name: Set up MSVC developer environment
-        uses: ilammy/msvc-dev-cmd@v1
-        with:
-          arch: x64
+        run: winget install --id=Ninja-build.Ninja -e --disable-interactivity --accept-source-agreements --accept-package-agreements
+ 
+      - name: Install Inno Setup
+        run: winget install --id=JRSoftware.InnoSetup -e --disable-interactivity --accept-source-agreements --accept-package-agreements
+ 
+      - name: Add WinGet-installed tools to PATH
+        run: echo "$env:LOCALAPPDATA\Microsoft\WinGet\Links" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
 
       - name: Configure CMake
-        run: cmake -S . -B build -G "Ninja" -DCMAKE_BUILD_TYPE=Release
-
+        run: cmake -S . -B build -G "Ninja" -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH="$env:QT_ROOT_DIR"
+ 
       - name: Build
         run: cmake --build build
 
       - name: Deploy Qt runtime DLLs
         run: |
-          & "$env:QT_ROOT_DIR\bin\windeployqt.exe" --release build\DesktopPico.exe
-
-      - name: Install Inno Setup
-        run: choco install innosetup -y --no-progress
+          & "$env:QT_ROOT_DIR\bin\windeployqt.exe" build\DesktopPico.exe
 
       - name: Build installer
         run: |
