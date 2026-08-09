@@ -1,0 +1,41 @@
+{
+  "random_messages": [
+    "Drink some water!",
+    "Stretch!",
+    "Stretch time?",
+    "I need a drink!",
+    "Yaya",
+    "Keep going!",
+    "How's it going?",
+    "Don't forget to stretch!",
+    "You're doing great!",
+    "Need a snack?",
+    "Are we there yet?",
+    "I believe in you!",
+    "Hydration check!",
+    "You got this!",
+    "Don't forget breaks!",
+    ":D",
+    ":o",
+    ":)",
+    ";D",
+    "<3"
+  ],
+  "click_messages": [
+    "Zzz...",
+    "You can do this!",
+    "I believe in you!",
+    "Mmm snacks...",
+    "Don't give up!",
+    "Goooo Pico!!!",
+    "Yaya!",
+    "I'm sleepy... Zzz",
+    "Need some help?",
+    "You're doing great!"
+  ],
+  "startup_messages": [
+    "Hi! I'm your little desktop Pico Buddy!",
+    "Drag 'n drop me to where I should sit."
+  ],
+  "cry_message": "My head hurts..."
+}

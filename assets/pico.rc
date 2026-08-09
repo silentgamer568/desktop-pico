@@ -1,0 +1,5 @@
+// Drop your icon file at assets/Melon.ico (converted from the original
+// pixel art, same as the PyInstaller --icon flag did in the Python build).
+// If the file is missing, comment out the line below — CMake will still
+// build fine, the exe will just use the default Windows icon.
+IDI_ICON1 ICON "Melon.ico"
