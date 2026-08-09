@@ -9,12 +9,14 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    permissions:
+        contents: write
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Install Qt (MinGW build)
+      - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
           version: "6.8.*"
