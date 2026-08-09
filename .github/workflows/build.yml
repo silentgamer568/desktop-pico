@@ -17,12 +17,11 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
-          version: "6.11.1"
+          version: "6.11.*"
           host: "windows"
           target: "desktop"
           arch: "win64_mingw"
           tools: "tools_mingw1310,qt.tools.win64_mingw1310"
-          extra: "--base https://download.qt.io"
 
       - name: List available Qt tools
         if: failure()
